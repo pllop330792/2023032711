@@ -194,6 +194,10 @@ def update_tag_files():
     files = [str(t.relative_to(TAGS_PATH)) for t in TAGS_PATH.glob("*.csv")]
     csv_files = files
     csv_files_withnone = ["None"] + files
+    # Add tag lists to autocomplete_tags dictionary
+autocomplete_tags['.tags'] = csv_files
+autocomplete_tags['.tags_withnone'] = csv_files_withnone
+
 
 
 
