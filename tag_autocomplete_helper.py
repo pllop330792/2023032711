@@ -169,11 +169,14 @@ def get_lora():
     return sorted([l[:l.rfind('.')] for l in all_lora], key=lambda x: x.lower())
 
 def write_tag_base_path():
-    FILE_DIR = Path(__file__).resolve().parent
-    TAGS_PATH = FILE_DIR / ".." / "tags"
-    TAG_BASE_PATH_FILE = FILE_DIR / "tag_base_path.txt"
-    with open(TAG_BASE_PATH_FILE, "w") as f:
-        f.write(TAGS_PATH.relative_to(FILE_DIR).as_posix())
+    """
+    Write the path to TAGS_PATH in TAG_BASE_PATH_FILE
+    """
+    file_dir = Path(__file__).parent
+    tag_base_path_file = file_dir / "TAG_BASE_PATH.txt"
+
+    with tag_base_path_file.open("w") as f:
+        f.write(TAGS_PATH.resolve().as_posix())
 
 
 
