@@ -1,5 +1,4 @@
-# 2023032711
-tag_autocomplete_helper 수정본
+# tag_autocomplete_helper 수정본
 
 
 File "", line 850, in exec_module
@@ -23,13 +22,9 @@ def write_tag_base_path():
         f.write(base_path.as_posix())
        
 함수 추가하고
-
-
-# Tags base path
-TAGS_PATH = Path(scripts.basedir()).joinpath('tags')
+태그 기본 경로에
 TAG_BASE_PATH_FILE = "/content/drive/MyDrive/SD/extensions/a1111-sd-webui-tagcomplete/scripts/tag_base_path.txt"
-
-에 TAG_BASE_PATH_FILE 변수정의함
+변수정의함
 
 
 오류는 사라졌지만 자동완성 기능이 안됨.
