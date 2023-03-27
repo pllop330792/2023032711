@@ -21,8 +21,6 @@ except ImportError:
 
 # Tags base path
 TAGS_PATH = Path(scripts.basedir()).joinpath('tags')
-TAG_BASE_PATH_FILE = Path(scripts.basedir()).joinpath('tags')
-
 
 # The path to the folder containing the wildcards and embeddings
 WILDCARD_PATH = FILE_DIR.joinpath('scripts/wildcards')
@@ -168,16 +166,11 @@ def get_lora():
     # Remove file extensions
     return sorted([l[:l.rfind('.')] for l in all_lora], key=lambda x: x.lower())
 
+
 def write_tag_base_path():
-    """
-    Write the path to TAGS_PATH in TAG_BASE_PATH_FILE
-    """
-    file_dir = Path(__file__).parent
-    tag_base_path_file = file_dir / "TAG_BASE_PATH.txt"
-
-    with tag_base_path_file.open("w") as f:
-        f.write(TAGS_PATH.resolve().as_posix())
-
+    """Writes the tag base path to a fixed location temporary file"""
+    with open(STATIC_TEMP_PATH.joinpath('tagAutocompletePath.txt'), 'w', encoding="utf-8") as f:
+        f.write(TAGS_PATH.relative_to(FILE_DIR).as_posix())
 
 
 def write_to_temp_file(name, data):
@@ -194,10 +187,6 @@ def update_tag_files():
     files = [str(t.relative_to(TAGS_PATH)) for t in TAGS_PATH.glob("*.csv")]
     csv_files = files
     csv_files_withnone = ["None"] + files
-    # Add tag lists to autocomplete_tags dictionary
-autocomplete_tags['.tags'] = csv_files
-autocomplete_tags['.tags_withnone'] = csv_files_withnone
-
 
 
 
